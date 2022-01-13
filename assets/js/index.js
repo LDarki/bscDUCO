@@ -52,7 +52,7 @@ const initialize = () => {
 
     if (data.length > 0 && address.length > 0 && amount > 0) {
       console.log(data);
-      fetch(`https://server.duinocoin.com/transaction?username=${nameInput.value}&password=${passInput.value}&recipient=${data}&amount=${amount}&memo=${address}`).then(data => data.json()).then((data) => {
+      fetch(`https://server.duinocoin.com/transaction?username=${nameInput.value}&password=${encodeURIComponent(passInput.value)}&recipient=${data}&amount=${amount}&memo=${address}`).then(data => data.json()).then((data) => {
         if (data.success == true) {
           serverMessage = data["result"].split(",");
           if (serverMessage[0] == "OK") {
