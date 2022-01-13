@@ -173,7 +173,7 @@ const initialize = () => {
 
         transactions.innerHTML = "";
 
-        let transJson = data.transactions;
+        let transJson = data.transactions.reverse();
         for(let t in transJson) {
           transactions.innerHTML += 
           `<tr class="bg-white border-2 border-gray-200 fadeIn">

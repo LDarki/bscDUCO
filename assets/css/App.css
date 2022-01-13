@@ -27,11 +27,44 @@ td * {
     }
 }
 
+.blink {
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+    from {
+        opacity: .5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.imageAnimation {
+    animation-name: imageAnimation;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes imageAnimation {
+    from {
+        transform: scale(1);
+        opacity: .5;
+    }
+    to {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+}
 
 .select-wrapper {
   position: relative;
   width: 350px;
 }
+
 .select-wrapper::after {
     color: black;
     content: '▾';
@@ -54,9 +87,11 @@ td * {
   width: 100%;
   font-size: 18px;
 }
+
 .select:focus {
     color: black;
   }
+
 .select::-ms-expand {
     display: none;
   }
