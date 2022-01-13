@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="min-w-full min-h-full">
+
+<head>
+    <title>Bsc DUCO</title>
+    <meta name="description" content="The Duino-Coin Binance Smart Chain Wrapper">
+    <meta name="keywords" content="bnb, binance, smart, chain, duino, coin, duino-coin, crypto, duco, arduino">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
+    <link href="assets/css/App.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="flex w-full h-screen">
+    <div class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none hidden" id="successModal">
+        <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+        <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+            <div class="">
+                <div class="text-center p-5 flex-auto justify-center">
+                    <i class="fa fa-check-circle text-green-500 text-7xl block mx-auto"></i>
+                    <h2 class="text-xl font-bold py-4 title"></h3>
+                    <p class="text-sm text-gray-500 px-8 data"></p>
+                </div>
+                <div class="p-3 mt-2 text-center space-x-4 md:block">
+                    <button onclick="this.parentElement.parentElement.parentElement.parentElement.classList.add('hidden');"
+                        class="mb-2 md:mb-0 bg-indigo-500 border border-indigo-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-indigo-600">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none hidden" id="errorModal">
+        <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+        <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+            <div class="">
+                <div class="text-center p-5 flex-auto justify-center">
+                    <i class="fa fa-exclamation-circle text-red-500 text-7xl block mx-auto"></i>
+                    <h2 class="text-xl font-bold py-4 title"></h3>
+                    <p class="text-sm text-gray-500 px-8 data"></p>
+                </div>
+                <div class="p-3 mt-2 text-center space-x-4 md:block">
+                    <button onclick="this.parentElement.parentElement.parentElement.parentElement.classList.add('hidden');"
+                        class="mb-2 md:mb-0 bg-indigo-500 border border-indigo-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-indigo-600">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none" id="loginModal">
+        <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+        <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+            <div class="">
+                <div class="text-center p-5 flex-auto justify-center">
+                    <img src="assets/img/metamask.svg" class="w-16 h-16 block mx-auto" alt="metamask-logo"/>
+                    <h2 class="text-xl font-bold py-4">Welcome.</h3>
+                        <p class="text-sm text-gray-500 px-8">Before starting you need to connect your MetaMask Account.</p>
+                </div>
+                <div class="p-3  mt-2 text-center space-x-4 md:block">
+                    <button
+                        class="mb-2 md:mb-0 bg-indigo-500 border border-indigo-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-indigo-600" id="connectButton">Connect</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="h-full w-full hidden fadeIn" id="login" style="flex-direction: column;">
+        <div class="w-full min-h-screen bg-gray-50 flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+            <div class="w-full sm:max-w-md p-5 mx-auto">
+                <h2 class="mb-12 text-center text-2xl font-extrabold">Sign In with your Duino-Coin Account.</h2>
+                <form>
+                    <div class="mb-4">
+                        <label class="block mb-1" for="username">Username</label>
+                        <input id="username" type="text" name="username" autocomplete="off"
+                            class="py-2 px-3 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full" />
+                    </div>
+                    <div class="mb-4">
+                        <label class="block mb-1" for="password">Password</label>
+                        <input id="password" type="password" name="password" autocomplete="off"
+                            class="py-2 px-3 border border-gray-300 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full" />
+                    </div>
+                    <div class="mt-6">
+                        <button id="loginSubmit"
+                            class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-semibold capitalize text-white active:bg-indigo-700 focus:outline-none bg-indigo-500 hover:bg-indigo-600 hover:border-indigo-500 focus:border-indigo-700 focus:ring focus:ring-indigo-200 disabled:opacity-25 transition">Sign
+                            In</button>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <a href="https://wallet.duinocoin.com/register.html" class="underline">Sign up for an
+                            account</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="flex h-full w-full hidden fadeIn" id="wallet">
+        <div class="rounded-md w-3/12 h-full flex-col justify-between">
+            <div class="bg-white border-r-2 border-gray-300 border-opacity-40">
+                <div class="flex justify-center py-10 shadow-sm pr-4">
+                    <img src="assets/img/logo.svg" class="h-16 w-16" alt="duco-logo"/>
+                    <div class="pl-2">
+
+                        <p class="text-2xl font-bold text-indigo-600">BSC</h1>
+                            <span class="text-xs block text-gray-800">Duino-Coin</span>
+                    </div>
+                </div>
+                <div class="pl-10">
+                    <ul class="space-y-8 pt-10">
+                        <li class="flex space-x-4 items-center hover:text-indigo-600 cursor-pointer">
+                            <i class="fa fa-credit-card fa-fw text-2xl h-6 w-6"></i>
+                            <a href="https://wallet.duinocoin.com/">Wallet</a>
+                        </li>
+                        <li id="home" class="flex space-x-4 items-center hover:text-indigo-600 cursor-pointer">
+                            <i class="fa fa-home fa-fw text-2xl h-6 w-6"></i>
+                            <a href="#!">Home</a>
+                        </li>
+                        <li id="wrap" class="flex space-x-4 items-center hover:text-indigo-600 cursor-pointer">
+                            <i class="fa fa-box fa-fw text-2xl h-6 w-6"></i>
+                            <a href="#!">Wrap</a>
+                        </li>
+                        <li id="unwrap" class="flex space-x-4 items-center hover:text-indigo-600 cursor-pointer">
+                            <i class="fa fa-box fa-fw text-2xl h-6 w-6"></i>
+                            <a href="#!">Unwrap</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bg-white flex items-center space-x-4 mt-10 pl-10 pb-10 hover:text-indigo-600 cursor-pointer">
+                <i class="fas fa-sign-out-alt fa-fw text-2xl h-6 w-6"></i>
+                <a href="#!" onclick="window.location.reload()">Logout</a>
+            </div>
+        </div>
+        <div id="wrapContainer" class="h-full w-9/12 bg-indigo-50 fadeIn hidden">
+            <div class="h-full w-full bg-indigo-50 flex items-center justify-around" style="flex-direction: column;">
+                <div class="bg-white py-6 rounded-md px-10 max-w-lg shadow-md text-center">
+                    <h1 class="text-center text-lg font-bold text-gray-500">Wrap DUCO</h1>
+                    <div class="space-y-4 mt-6">
+                        <div class="select-wrapper">
+                            <select id="wrapData" class="select bg-gray-50 ring-1 ring-indigo-200 outline-none">
+                                <option value="bscDUCO">bscDUCO</option>
+                                <option value="maticDUCO">maticDUCO</option>
+                            </select>
+                        </div>
+                        <div class="w-full">
+                            <input type="number" id="wrapAmount" placeholder="Amount" class="px-4 py-2 bg-gray-50 w-full" />
+                        </div>
+                        <div class="w-full">
+                            <input type="text" id="wrapAddress" placeholder="Address" class="px-4 py-2 bg-gray-50 w-full" />
+                        </div>
+                    </div>
+                    <button class="mt-2 w-8/12 mb-2 md:mb-0 bg-indigo-500 border border-indigo-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-indigo-600" id="wrapBtn">Wrap</button>
+                </div>
+            </div>
+        </div>
+        <div id="unwrapContainer" class="h-full w-9/12 bg-indigo-50 fadeIn hidden">
+            <div class="h-full w-full bg-indigo-50 flex items-center justify-around" style="flex-direction: column;">
+                <div class="bg-white py-6 rounded-md px-10 max-w-lg shadow-md text-center">
+                    <h1 class="text-center text-lg font-bold text-gray-500">UnWrap DUCO</h1>
+                    <div class="space-y-4 mt-6">
+                        <div class="w-full">
+                            <input type="number" id="unwrapAmount" placeholder="Amount" class="px-4 py-2 bg-gray-50 w-full" />
+                        </div>
+                        <div class="w-full">
+                            <input type="text" id="unwrapAddress" placeholder="Address" class="px-4 py-2 bg-gray-50 w-full" />
+                        </div>
+                    </div>
+                    <button class="mt-2 w-8/12 mb-2 md:mb-0 bg-indigo-500 border border-indigo-500 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg hover:bg-indigo-600" id="unwrapBtn">UnWrap</button>
+                </div>
+            </div>
+        </div>
+        <div id="homeContainer" class="h-full w-9/12 fadeIn bg-indigo-50">
+            <div class="h-full w-full bg-indigo-50 flex-grow py-12 px-10" style="flex-direction: column;">
+                <div class="flex w-full justify-around items-center">
+                    <div class="flex space-x-4">
+                        <div
+                            class="flex items-center justify-around p-6 bg-white w-60 rounded-xl space-x-2 mt-10 shadow-lg">
+                            <div id="userBalanceBsc">
+                                <span class="text-sm font-semibold text-gray-400">bscDUCO</span>
+                                <h1 class="text-2xl font-bold">0000.0000</h1>
+                                <span class="text-sm font-semibold text-gray-400">&nbsp;</span>
+                            </div>
+                            <div>
+                                <i class="fa fa-credit-card fa-2xl fa-fw text-2xl text-indigo-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <div
+                            class="flex items-center justify-around p-6 bg-white w-60 rounded-xl space-x-2 mt-10 shadow-lg">
+                            <div id="userBalance">
+                                <span class="text-sm font-semibold text-gray-400">DUCO</span>
+                                <h1 class="text-2xl font-bold">0000.0000</h1>
+                                <span class="text-sm font-semibold text-gray-400">≈ $0.0000</span>
+                            </div>
+                            <div>
+                                <i class="fa fa-credit-card fa-2xl fa-fw text-2xl text-indigo-600"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-around items-center w-2/12 bg-white rounded" style="flex-direction: column;">
+                        <button id="addButton" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md font-semibold capitalize text-white active:bg-indigo-700 focus:outline-none bg-indigo-500 hover:bg-indigo-600 hover:border-indigo-500 focus:border-indigo-700 focus:ring focus:ring-indigo-200 disabled:opacity-25 transition">Add to MetaMask</button>
+                    </div>
+                </div>
+                <div class="flex w-full mt-10 justify-around">
+                    <div class="flex w-8/12 justify-center" style="flex-direction: column;">
+                        <p class="text-2xl text-black font-semibold">Transactions</p>
+                        <hr style="visibility: hidden;">
+                        <table class="min-w-full table-auto">
+                            <thead class="justify-between">
+                                <tr class="bg-gray-800 space-x-2">
+                                    <th class="py-2">
+                                        <span class="text-gray-300">From</span>
+                                    </th>
+                                    <th class="py-2">
+                                        <span class="text-gray-300">To</span>
+                                    </th>
+                                    <th class="py-2">
+                                        <span class="text-gray-300">Ammount</span>
+                                    </th>
+                                    <th class="py-2">
+                                        <span class="text-gray-300">Date</span>
+                                    </th>
+                                    <th class="py-2">
+                                        <span class="text-gray-300">TxID</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-gray-200" id="transactions">
+                                <tr class="bg-white border-2 border-gray-200">
+                                    <td>
+                                        <span class="text-center ml-2 font-semibold"> </span>
+                                    </td>
+                                    <td>
+                                        <span class="text-center ml-2 font-semibold"> </span>
+                                    </td>
+                                    <td>
+                                        <span class="text-center ml-2 font-semibold"> </span>
+                                    </td>
+                                    <td>
+                                        <span class="text-center ml-2 font-semibold"> </span>
+                                    </td>
+                                    <td>
+                                        <span class="text-center ml-2 font-semibold"> </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="flex justify-around w-3/12 bg-white rounded" style="flex-direction: column;">
+                        <a href="https://v3.polarisdefi.io/stake-pool/0xb76e7015198902D97E77804ac742Cc75d3a661BA" class="w-full inline-flex items-center justify-center cursor-pointer py-2 px-4 bg-transparent border-2 border-indigo-500 text-indigo-500 text-lg rounded-lg transition-colors duration-400 transform hover:bg-indigo-500 hover:text-gray-100 focus:border-4 focus:border-indigo-300 text-center">Farm</a>
+                        <hr style="visibility: hidden;"/>
+                        <a href="https://pancakeswap.finance/swap#/swap?outputCurrency=0xcf572ca0ab84d8ce1652b175e930292e2320785b" class="w-full inline-flex items-center justify-center cursor-pointer py-2 px-4 bg-transparent border-2 border-indigo-500 text-indigo-500 text-lg rounded-lg transition-colors duration-400 transform hover:bg-indigo-500 hover:text-gray-100 focus:border-4 focus:border-indigo-300 text-center">PancakeSwap</a>
+                        <hr style="visibility: hidden;"/>
+                        <a href="https://bscscan.com/token/0xcf572ca0ab84d8ce1652b175e930292e2320785b" class="w-full inline-flex items-center justify-center cursor-pointer py-2 px-4 bg-transparent border-2 border-indigo-500 text-indigo-500 text-lg rounded-lg transition-colors duration-400 transform hover:bg-indigo-500 hover:text-gray-100 focus:border-4 focus:border-indigo-300 text-center">BscScan</a>
+                        <hr style="visibility: hidden;"/>
+                        <a href="https://polygonscan.com/token/0xaf965beb8c830ae5dc8280d1c7215b8f0acc0cea" class="w-full inline-flex items-center justify-center cursor-pointer py-2 px-4 bg-transparent border-2 border-indigo-500 text-indigo-500 text-lg rounded-lg transition-colors duration-400 transform hover:bg-indigo-500 hover:text-gray-100 focus:border-4 focus:border-indigo-300 text-center">PolygonScan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="assets/js/index.js"></script>
+</html>
