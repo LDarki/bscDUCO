@@ -15,7 +15,7 @@
 
 <body class="flex w-full h-screen">
     <div class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none hidden" id="successModal">
-        <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+        <div onclick="this.parentElement.classList.add('hidden');" class="absolute bg-black opacity-80 inset-0 z-0"></div>
         <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
             <div class="">
                 <div class="text-center p-5 flex-auto justify-center">
@@ -31,7 +31,7 @@
         </div>
     </div>
     <div class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none hidden" id="errorModal">
-        <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+        <div onclick="this.parentElement.classList.add('hidden');" class="absolute bg-black opacity-80 inset-0 z-0"></div>
         <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
             <div class="">
                 <div class="text-center p-5 flex-auto justify-center">
@@ -153,7 +153,7 @@
                 <div class="bg-white py-6 rounded-md px-10 max-w-lg shadow-md text-center">
                     <h1 class="text-center text-lg font-bold text-gray-500">UnWrap DUCO</h1>
                     <div class="space-y-4 mt-6">
-                        <div class="w-full">
+                        <div class="w-full" style="width: 350px;">
                             <input type="number" id="unwrapAmount" placeholder="Amount" class="px-4 py-2 bg-gray-50 w-full" />
                         </div>
                         <div class="w-full">

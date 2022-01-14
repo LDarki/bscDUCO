@@ -169,7 +169,7 @@ const initialize = () => {
         console.log("Balance received: " + balance + " ($" + balanceusd + ")");
 
         userBalance.querySelector("h1").innerHTML = balance;
-        userBalance.querySelectorAll("span")[1].innerHTML = round_to(4, balanceusd);
+        userBalance.querySelectorAll("span")[1].innerHTML = `≈ $ ${round_to(4, balanceusd)}`;
 
         transactions.innerHTML = "";
 
