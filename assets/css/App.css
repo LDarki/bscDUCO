@@ -1,63 +1,108 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 td * {
-    display: block !important;
-    margin: 0 auto !important;
+  display: block !important;
+  margin: 0 auto !important;
 }
 
 .fadeIn {
-    animation-name: fadeIn;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .blink {
-    animation-name: blink;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
+  -webkit-animation-name: blink;
+  animation-name: blink;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes blink {
+  from {
+    opacity: .5;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes blink {
-    from {
-        opacity: .5;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: .5;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .imageAnimation {
-    animation-name: imageAnimation;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
+  -webkit-animation-name: imageAnimation;
+  animation-name: imageAnimation;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes imageAnimation {
+  from {
+    transform: scale(1);
+    opacity: .5;
+  }
+
+  to {
+    transform: scale(1.25);
+    opacity: 1;
+  }
 }
 
 @keyframes imageAnimation {
-    from {
-        transform: scale(1);
-        opacity: .5;
-    }
-    to {
-        transform: scale(1.25);
-        opacity: 1;
-    }
+  from {
+    transform: scale(1);
+    opacity: .5;
+  }
+
+  to {
+    transform: scale(1.25);
+    opacity: 1;
+  }
 }
 
 .select-wrapper {
@@ -66,14 +111,14 @@ td * {
 }
 
 .select-wrapper::after {
-    color: black;
-    content: '▾';
-    margin-right: 10px;
-    pointer-events: none;
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 20px;
+  color: black;
+  content: '▾';
+  margin-right: 10px;
+  pointer-events: none;
+  position: absolute;
+  right: 10px;
+  top: 7px;
+  font-size: 20px;
 }
 
 .select {
@@ -89,9 +134,9 @@ td * {
 }
 
 .select:focus {
-    color: black;
-  }
+  color: black;
+}
 
 .select::-ms-expand {
-    display: none;
-  }
+  display: none;
+}
