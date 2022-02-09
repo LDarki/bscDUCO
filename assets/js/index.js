@@ -73,6 +73,11 @@ const initialize = () => {
           error.querySelector(".data").innerHTML = `<b>An error has occurred while sending funds: </b>` + data.message + `</b><br></p>`;
           wrapBtn.disabled = false;
         }
+      }).catch(err => {
+        error.classList.remove("hidden");
+        error.querySelector(".title").innerHTML = "Error";
+        error.querySelector(".data").innerHTML = `Something went wrong. Please try again later.
+        <br><br>${err}`;
       });
     }
     else {
